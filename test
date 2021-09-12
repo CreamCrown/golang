@@ -1,0 +1,46 @@
+test
+
+// 目的を書く
+// お客様への提案。テスト仕様書作成者への連携と多岐にわたる方が見る想定で記載する
+// テスト、実装の工数を減らすためにも画面数は極力減らす
+
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+const {
+register int = iota + 1
+update
+delete
+}
+
+
+type InhouseGroup struct {
+  changeType string
+  sortNo string
+  name string
+  undateDatetime string
+}
+
+func (i InhouseGroup)String(){
+fmt.Printf(i.name)
+}
+
+
+func main() {
+	s := `{"changeType":"1","sortNo":"0","name":"Testtest","undateDatetime":"20200630103059999"}`
+
+	var i InhouseGroup
+	
+	if err := json.Unmarshal([]byte(s), &i); err != nil {
+		fmt.Printf("noUnmarshal")
+		return
+	}
+
+	fmt.Printf("%#v\n", i.undateDatetime)
+	fmt.Println(i.undateDatetime, i.name)
+
+}
